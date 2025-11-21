@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ObatTaniku.id - Solusi Cerdas Pertanian Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            animation: slideIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header -->
+    <div class="bg-white">
+        <header class="bg-green-50 sticky top-0 z-50 shadow-sm">
+            <div class="px-4 mx-auto sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 lg:h-20">
+                    <div class="flex-shrink-0">
+                        <a href="#" class="flex items-center space-x-3">
+                            <svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="60" cy="60" r="58" fill="#F5F5DC"/>
+                                <path d="M20 60 Q20 20, 60 20 Q100 20, 100 60" stroke="#FDB813" stroke-width="12" fill="none" stroke-linecap="round"/>
+                                <circle cx="60" cy="60" r="35" fill="white" stroke="#FDB813" stroke-width="3"/>
+                                <ellipse cx="50" cy="45" rx="8" ry="12" fill="#7CB342" transform="rotate(-20 50 45)"/>
+                                <ellipse cx="70" cy="45" rx="8" ry="12" fill="#7CB342" transform="rotate(20 70 45)"/>
+                                <ellipse cx="48" cy="55" rx="8" ry="12" fill="#9CCC65" transform="rotate(-25 48 55)"/>
+                                <ellipse cx="72" cy="55" rx="8" ry="12" fill="#9CCC65" transform="rotate(25 72 55)"/>
+                                <rect x="58" y="50" width="4" height="25" fill="#7CB342" rx="2"/>
+                                <line x1="25" y1="75" x2="95" y2="75" stroke="#AED581" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="30" y1="82" x2="90" y2="82" stroke="#9CCC65" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="35" y1="89" x2="85" y2="89" stroke="#7CB342" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="40" y1="96" x2="80" y2="96" stroke="#689F38" stroke-width="4" stroke-linecap="round"/>
+                            </svg>
+                            <div class="flex flex-col">
+                                <span class="text-xl font-bold text-green-800 leading-tight">OBAT TANI</span>
+                                <span class="text-xs text-yellow-600">Nutrisi Terbaik untuk Tanaman Anda</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <button type="button" id="menuBtn" class="inline-flex p-2 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100">
+                        <svg id="menuOpen" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
+                        </svg>
+                        <svg id="menuClose" class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+
+                    <nav class="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
+                        <a href="#produk" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Produk</a>
+                        <a href="#solusi" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Solusi</a>
+                        <a href="#cari" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Cari</a>
+                        <a href="#harga" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Harga</a>
+                    </nav>
+
+                    <a href="#" onclick="openModal('registerModal'); return false;" class="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-green-800 focus:bg-green-800 font-semibold text-white bg-green-700 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Gabung Sekarang</a>
+                </div>
+
+                <section>
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <header class="text-center">
+        <h1 class="text-xl font-bold text-gray-900 sm:text-3xl">Your Cart</h1>
+      </header>
+
+      <div class="mt-8">
+        <ul class="space-y-4">
+          <li class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" alt="" class="size-16 rounded-sm object-cover">
+
+            <div>
+              <h3 class="text-sm text-gray-900">Basic Tee 6-Pack</h3>
+
+              <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+                <div>
+                  <dt class="inline">Size:</dt>
+                  <dd class="inline">XXS</dd>
+                </div>
+
+                <div>
+                  <dt class="inline">Color:</dt>
+                  <dd class="inline">White</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="flex flex-1 items-center justify-end gap-2">
+              <form>
+                <label for="Line1Qty" class="sr-only"> Quantity </label>
+
+                <input type="number" min="1" value="1" id="Line1Qty" class="h-8 w-12 rounded-sm border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-hidden [&amp;::-webkit-inner-spin-button]:m-0 [&amp;::-webkit-inner-spin-button]:appearance-none [&amp;::-webkit-outer-spin-button]:m-0 [&amp;::-webkit-outer-spin-button]:appearance-none" fdprocessedid="4h0hbg">
+              </form>
+
+              <button class="text-gray-600 transition hover:text-red-600" fdprocessedid="ytaxlh">
+                <span class="sr-only">Remove item</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" alt="" class="size-16 rounded-sm object-cover">
+
+            <div>
+              <h3 class="text-sm text-gray-900">Basic Tee 6-Pack</h3>
+
+              <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+                <div>
+                  <dt class="inline">Size:</dt>
+                  <dd class="inline">XXS</dd>
+                </div>
+
+                <div>
+                  <dt class="inline">Color:</dt>
+                  <dd class="inline">White</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="flex flex-1 items-center justify-end gap-2">
+              <form>
+                <label for="Line2Qty" class="sr-only"> Quantity </label>
+
+                <input type="number" min="1" value="1" id="Line2Qty" class="h-8 w-12 rounded-sm border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-hidden [&amp;::-webkit-inner-spin-button]:m-0 [&amp;::-webkit-inner-spin-button]:appearance-none [&amp;::-webkit-outer-spin-button]:m-0 [&amp;::-webkit-outer-spin-button]:appearance-none" fdprocessedid="7ou6fg">
+              </form>
+
+              <button class="text-gray-600 transition hover:text-red-600" fdprocessedid="ciodmg">
+                <span class="sr-only">Remove item</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
+                </svg>
+              </button>
+            </div>
+          </li>
+
+          <li class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" alt="" class="size-16 rounded-sm object-cover">
+
+            <div>
+              <h3 class="text-sm text-gray-900">Basic Tee 6-Pack</h3>
+
+              <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+                <div>
+                  <dt class="inline">Size:</dt>
+                  <dd class="inline">XXS</dd>
+                </div>
+
+                <div>
+                  <dt class="inline">Color:</dt>
+                  <dd class="inline">White</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="flex flex-1 items-center justify-end gap-2">
+              <form>
+                <label for="Line3Qty" class="sr-only"> Quantity </label>
+
+                <input type="number" min="1" value="1" id="Line3Qty" class="h-8 w-12 rounded-sm border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-hidden [&amp;::-webkit-inner-spin-button]:m-0 [&amp;::-webkit-inner-spin-button]:appearance-none [&amp;::-webkit-outer-spin-button]:m-0 [&amp;::-webkit-outer-spin-button]:appearance-none" fdprocessedid="hpuv7">
+              </form>
+
+              <button class="text-gray-600 transition hover:text-red-600" fdprocessedid="dkwa3c">
+                <span class="sr-only">Remove item</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"></path>
+                </svg>
+              </button>
+            </div>
+          </li>
+        </ul>
+
+        <div class="mt-8 flex justify-end border-t border-gray-100 pt-8">
+          <div class="w-screen max-w-lg space-y-4">
+            <dl class="space-y-0.5 text-sm text-gray-700">
+              <div class="flex justify-between">
+                <dt>Subtotal</dt>
+                <dd>£250</dd>
+              </div>
+
+              <div class="flex justify-between">
+                <dt>VAT</dt>
+                <dd>£25</dd>
+              </div>
+
+              <div class="flex justify-between">
+                <dt>Discount</dt>
+                <dd>-£20</dd>
+              </div>
+
+              <div class="flex justify-between !text-base font-medium">
+                <dt>Total</dt>
+                <dd>£200</dd>
+              </div>
+            </dl>
+
+            <div class="flex justify-end">
+              <span class="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-ms-1 me-1.5 size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"></path>
+                </svg>
+
+                <p class="text-xs whitespace-nowrap">2 Discounts Applied</p>
+              </span>
+            </div>
+
+            <div class="flex justify-end">
+              <a href="#" class="block rounded-sm bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600">
+                Checkout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+
+<span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span>
+

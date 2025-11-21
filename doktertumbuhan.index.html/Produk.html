@@ -1,0 +1,81 @@
+<!-- Simplified base structure from user code, with Hero + Product section added -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>ObatTaniku.id</title>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-[#FCF8F1] bg-opacity-30">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="index.html" class="flex-shrink-0 flex">
+                    <img class="w-auto h-8" src="https://cdn.rareblocks.xyz/collection/celebration/images/logo.svg" alt="Logo" />
+                </a>
+
+                <div class="hidden lg:flex lg:items-center lg:space-x-10">
+                    <a href="produk.html" class="text-base text-black hover:text-opacity-80">Produk</a>
+                    <a href="Solusi.html" class="text-base text-black hover:text-opacity-80">Solusi</a>
+                    <a href="Cari.html" class="text-base text-black hover:text-opacity-80">Cari</a>
+                    <a href="Harga.html" class="text-base text-black hover:text-opacity-80">Harga</a>
+                </div>
+
+                <a href="#" class="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base font-semibold text-white bg-black rounded-full hover:bg-yellow-300 hover:text-black">Gabung</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION WITH PRODUCT LIST -->
+    <section class="py-16 bg-[#FCF8F1]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <!-- Hero Text -->
+                <div>
+                    <h1 class="text-4xl font-bold text-gray-900 leading-tight">Solusi Obat Pertanian Terlengkap Untuk Petani Indonesia</h1>
+                    <p class="mt-4 text-gray-700 text-lg">Temukan berbagai jenis pestisida, herbisida, fungisida, dan nutrisi tanaman dengan kualitas terpercaya.</p>
+                    <a href="#produk" class="mt-6 inline-block px-6 py-3 bg-black text-white rounded-full hover:bg-yellow-300 hover:text-black font-semibold">Lihat Produk</a>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1598514983191-3031e28b1f62?auto=format&fit=crop&w=600&q=60" class="rounded-xl shadow-lg w-full max-w-md" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT SECTION -->
+    <section id="produk" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">Produk Obat Pertanian</h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- CARD 1 -->
+                <div class="p-6 border rounded-xl shadow hover:shadow-lg transition">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOzwApfwioC6mNcFt122Bzs0bIhNGsDghSDg&s" class="rounded-md mb-4" />
+                    <h3 class="text-lg font-semibold">Pestisida Organik</h3>
+                    <p class="text-gray-600 text-sm mt-1">Mengendalikan hama tanpa merusak tanah dan lingkungan.</p>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="p-6 border rounded-xl shadow hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1598454444280-91eaf0c2a3d4?auto=format&fit=crop&w=600&q=60" class="rounded-md mb-4" />
+                    <h3 class="text-lg font-semibold">Herbisida</h3>
+                    <p class="text-gray-600 text-sm mt-1">Efektif mengendalikan gulma pada lahan pertanian.</p>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="p-6 border rounded-xl shadow hover:shadow-lg transition">
+                    <img src="https://images.unsplash.com/photo-1587502536263-3fd3b651b2c5?auto=format&fit=crop&w=600&q=60" class="rounded-md mb-4" />
+                    <h3 class="text-lg font-semibold">Fungisida</h3>
+                    <p class="text-gray-600 text-sm mt-1">Melindungi tanaman dari serangan jamur dan penyakit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src=""
+</html>

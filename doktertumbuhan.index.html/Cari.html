@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>ObatTaniku.id</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<body>
+    <!-- header -->
+     <div class="bg-white">
+    <head]er class="bg-[#FCF8F1] bg-opacity-30">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <div class="flex-shrink-0">
+                    <a href="index.html" title="" class="flex">
+                        <img class="w-auto h-8" src="https://cdn.rareblocks.xyz/collection/celebration/images/logo.svg" alt="" />
+                    </a>
+                </div>
+
+                <button type="button" class="inline-flex p-2 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100">
+                    <!-- Menu open: "hidden", Menu closed: "block" -->
+                    <svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
+                    </svg>
+
+                    <!-- Menu open: "block", Menu closed: "hidden" -->
+                    <svg class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+
+                <div class="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
+                    <a href="produk.html" title="" class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Produk </a>
+
+                    <a href="Solusi.html" title="" class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Solusi </a>
+
+                    <a href="Cari.html" title="" class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Cari </a>
+
+                    <a href="Harga.html" title="" class="text-base text-black transition-all duration-200 hover:text-opacity-80"> Harga </a>
+                </div>
+
+                <a href="#" title="" class="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-yellow-300 hover:text-black focus:text-black focus:bg-yellow-300 font-semibold text-white bg-black rounded-full" role="button"> Gabung </a>
+
+                <!-- hero  -->
+                 <!-- Cari Section -->
+<section id="cari" class="py-12 bg-white sm:py-16 lg:py-20">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Cari Solusi untuk Tanaman Anda</h2>
+            <p class="mt-4 text-lg text-gray-600">Temukan rekomendasi berdasarkan tanaman, masalah, atau lokasi Anda</p>
+        </div>
+
+        <div class="mt-10 max-w-3xl mx-auto bg-green-50 rounded-2xl p-6 shadow-sm">
+            <form id="searchForm" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Tanaman</label>
+                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
+                        <option value="">Pilih tanaman...</option>
+                        <option value="padi">Padi</option>
+                        <option value="jagung">Jagung</option>
+                        <option value="cabai">Cabai</option>
+                        <option value="tomat">Tomat</option>
+                        <option value="kopi">Kopi</option>
+                        <option value="kelapa-sawit">Kelapa Sawit</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Masalah yang Dihadapi</label>
+                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
+                        <option value="">Pilih masalah...</option>
+                        <option value="hama">Serangan Hama</option>
+                        <option value="penyakit">Penyakit Tanaman</option>
+                        <option value="nutrisi">Kekurangan Nutrisi</option>
+                        <option value="gulma">Gulma (Rumput Liar)</option>
+                        <option value="kelembaban">Kelembaban Berlebih</option>
+                        <option value="kekeringan">Kekeringan</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Lokasi (Provinsi)</label>
+                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
+                        <option value="">Pilih provinsi...</option>
+                        <option value="jawa-barat">Jawa Barat</option>
+                        <option value="jawa-tengah">Jawa Tengah</option>
+                        <option value="jawa-timur">Jawa Timur</option>
+                        <option value="sumatera-utara">Sumatera Utara</option>
+                        <option value="sulawesi-selatan">Sulawesi Selatan</option>
+                        <option value="kalimantan-timur">Kalimantan Timur</option>
+                        <option value="bali">Bali</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full bg-green-700 text-white font-semibold py-3 rounded-lg hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Cari Solusi
+                </button>
+            </form>
+        </div>
+
+        <div id="searchResult" class="mt-10 hidden">
+            <div class="bg-white p-6 rounded-xl shadow-md border border-green-100">
+                <h3 class="text-xl font-bold text-green-800">Rekomendasi untuk Anda</h3>
+                <p class="mt-3 text-gray-700">Berdasarkan masukan Anda, berikut solusi terbaik:</p>
+                <ul class="mt-3 list-disc pl-5 text-gray-600 space-y-1">
+                    <li>Gunakan <strong>Pestisida Organik Premium</strong> untuk mengatasi serangan hama.</li>
+                    <li>Tambahkan <strong>Pupuk Kompos Berkualitas</strong> untuk memperbaiki kesuburan tanah.</li>
+                    <li>Lakukan penyemprotan pagi/sore hari dengan <strong>Alat Semprot Otomatis</strong> agar merata.</li>
+                </ul>
+                <button onclick="openModal('registerModal')" class="mt-4 inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    Dapatkan Solusi Lengkap →
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Harga & Solusi Section -->
+<section id="harga" class="py-12 bg-gray-50 sm:py-16 lg:py-20">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Daftar Harga & Solusi Pertanian</h2>
+            <p class="mt-4 text-lg text-gray-600">Transparan, terjangkau, dan disesuaikan dengan kebutuhan lapangan</p>
+        </div>
+
+        <div class="mt-12 overflow-x-auto">
+            <table class="min-w-full bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+                <thead class="bg-green-700 text-white">
+                    <tr>
+                        <th class="py-4 px-6 text-left font-semibold">Produk / Solusi</th>
+                        <th class="py-4 px-6 text-center font-semibold">Untuk Masalah</th>
+                        <th class="py-4 px-6 text-right font-semibold">Harga</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <tr>
+                        <td class="py-4 px-6 font-medium text-gray-900">Pestisida Organik Premium</td>
+                        <td class="py-4 px-6 text-center text-gray-600">Hama (ulat, kutu daun, wereng)</td>
+                        <td class="py-4 px-6 text-right font-bold text-green-700">Rp 125.000 / liter</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="py-4 px-6 font-medium text-gray-900">Pupuk Kompos Berkualitas</td>
+                        <td class="py-4 px-6 text-center text-gray-600">Tanah tandus, pertumbuhan lambat</td>
+                        <td class="py-4 px-6 text-right font-bold text-green-700">Rp 85.000 / kg</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 px-6 font-medium text-gray-900">Bibit Unggul Bersertifikat</td>
+                        <td class="py-4 px-6 text-center text-gray-600">Varietas rendah hasil</td>
+                        <td class="py-4 px-6 text-right font-bold text-green-700">Rp 45.000 / paket</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="py-4 px-6 font-medium text-gray-900">Alat Semprot Otomatis</td>
+                        <td class="py-4 px-6 text-center text-gray-600">Efisiensi penyemprotan</td>
+                        <td class="py-4 px-6 text-right font-bold text-green-700">Rp 350.000 / unit</td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 px-6 font-medium text-gray-900">Paket Lengkap Pertanian</td>
+                        <td class="py-4 px-6 text-center text-gray-600">Solusi all-in-one (bibit + pupuk + pestisida)</td>
+                        <td class="py-4 px-6 text-right font-bold text-green-700">Rp 250.000 / paket</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-10 text-center">
+            <p class="text-gray-600 mb-4">Butuh konsultasi gratis?</p>
+            <a href="#" onclick="openModal('registerModal'); return false;" class="inline-flex items-center px-6 py-3 bg-green-700 text-white font-semibold rounded-full shadow-md hover:bg-green-800 transition-all">
+                Hubungi Ahli Pertanian Kami
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Script tambahan untuk form pencarian -->
+<script>
+    document.getElementById('searchForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('searchResult').classList.remove('hidden');
+        // Di implementasi nyata, ini akan mengirim ke backend atau API
+        // Untuk demo, hanya menampilkan hasil statis
+    });
+</script>
+                  
+            </div>
+        </div>
+    </header>

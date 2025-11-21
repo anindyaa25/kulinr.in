@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ObatTaniku.id - Solusi Cerdas Pertanian Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            animation: slideIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header -->
+    <div class="bg-white">
+        <header class="bg-green-50 sticky top-0 z-50 shadow-sm">
+            <div class="px-4 mx-auto sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 lg:h-20">
+                    <div class="flex-shrink-0">
+                        <a href="#" class="flex items-center space-x-3">
+                            <svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="60" cy="60" r="58" fill="#F5F5DC"/>
+                                <path d="M20 60 Q20 20, 60 20 Q100 20, 100 60" stroke="#FDB813" stroke-width="12" fill="none" stroke-linecap="round"/>
+                                <circle cx="60" cy="60" r="35" fill="white" stroke="#FDB813" stroke-width="3"/>
+                                <ellipse cx="50" cy="45" rx="8" ry="12" fill="#7CB342" transform="rotate(-20 50 45)"/>
+                                <ellipse cx="70" cy="45" rx="8" ry="12" fill="#7CB342" transform="rotate(20 70 45)"/>
+                                <ellipse cx="48" cy="55" rx="8" ry="12" fill="#9CCC65" transform="rotate(-25 48 55)"/>
+                                <ellipse cx="72" cy="55" rx="8" ry="12" fill="#9CCC65" transform="rotate(25 72 55)"/>
+                                <rect x="58" y="50" width="4" height="25" fill="#7CB342" rx="2"/>
+                                <line x1="25" y1="75" x2="95" y2="75" stroke="#AED581" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="30" y1="82" x2="90" y2="82" stroke="#9CCC65" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="35" y1="89" x2="85" y2="89" stroke="#7CB342" stroke-width="4" stroke-linecap="round"/>
+                                <line x1="40" y1="96" x2="80" y2="96" stroke="#689F38" stroke-width="4" stroke-linecap="round"/>
+                            </svg>
+                            <div class="flex flex-col">
+                                <span class="text-xl font-bold text-green-800 leading-tight">OBAT TANI</span>
+                                <span class="text-xs text-yellow-600">Nutrisi Terbaik untuk Tanaman Anda</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <button type="button" id="menuBtn" class="inline-flex p-2 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100">
+                        <svg id="menuOpen" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
+                        </svg>
+                        <svg id="menuClose" class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+
+                    <nav class="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
+                        <a href="#produk" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Produk</a>
+                        <a href="#solusi" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Solusi</a>
+                        <a href="#cari" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Cari</a>
+                        <a href="#harga" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Harga</a>
+                    </nav>
+
+                    <a href="#" onclick="openModal('registerModal'); return false;" class="hidden lg:inline-flex items-center justify-center px-5 py-2.5 text-base transition-all duration-200 hover:bg-green-800 focus:bg-green-800 font-semibold text-white bg-green-700 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Gabung Sekarang</a>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobileMenu" class="hidden lg:hidden pb-4">
+                    <!-- Desktop Navbar -->
+<nav class="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
+    <button onclick="openCartModal()" class="relative p-2 text-black hover:text-green-700">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l1.6-8H7M7 13L5.4 5H3m3 8l2 8m4-8v8m4-8l2-8m2 8v8" />
+    </svg>
+    <span id="cartBadge" class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+</button>
+    <a href="#produk" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Produk</a>
+    <a href="#solusi" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Solusi</a>
+    <a href="#cari" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Cari</a>
+    <a href="#harga" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Harga</a>
+    <!-- Ikon Keranjang -->
+    <button onclick="openCartModal()" class="relative p-2 text-black hover:text-green-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l1.6-8H7M7 13L5.4 5H3m3 8l2 8m4-8v8m4-8l2-8m2 8v8" />
+        </svg>
+        <span id="cartBadge" class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+    </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden lg:hidden pb-4">
+    <nav class="flex flex-col space-y-4">
+        <a href="#produk" class="text-base text-black hover:text-green-700 font-medium">Produk</a>
+        <a href="#solusi" class="text-base text-black hover:text-green-700 font-medium">Solusi</a>
+        <a href="#cari" class="text-base text-black hover:text-green-700 font-medium">Cari</a>
+        <a href="#harga" class="text-base text-black hover:text-green-700 font-medium">Harga</a>
+        <!-- Ikon Keranjang untuk Mobile -->
+        <button onclick="openCartModal()" class="text-base text-black font-medium flex items-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l1.6-8H7M7 13L5.4 5H3m3 8l2 8m4-8v8m4-8l2-8m2 8v8" />
+            </svg>
+            <span>Keranjang</span>
+        </button>
+        <a href="#" onclick="openModal('registerModal'); return false;" class="inline-flex items-center justify-center px-5 py-2.5 text-base font-semibold text-white bg-green-700 rounded-full">Gabung Sekarang</a>
+    </nav>
+</div>
+    <a href="#produk" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Produk</a>
+    <a href="#solusi" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Solusi</a>
+    <a href="#cari" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Cari</a>
+    <a href="#harga" class="text-base text-black transition-all duration-200 hover:text-green-700 font-medium">Harga</a>
+    
+    <!-- Ikon Keranjang -->
+    <button onclick="openCartModal()" class="relative p-2 text-black hover:text-green-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l1.6-8H7M7 13L5.4 5H3m3 8l2 8m4-8v8m4-8l2-8m2 8v8" />
+        </svg>
+        <span id="cartBadge" class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+    </button>
+</nav>
+                </div>
+            </div>
+        </header>
+    </div>
+
+   <!-- Produk Section -->
+   
+<section id="produk" class="py-12 bg-white sm:py-16 lg:py-20">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Rekomendasi Produk Terbaik</h2>
+            <p class="mt-4 text-lg text-gray-600">Pilihan produk unggulan untuk hasil panen maksimal</p>
+        </div>
+
+        <!-- Kategori 1: Pupuk & Nutrisi -->
+        <div class="mt-16">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                    <svg class="w-5 h-5 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">Pupuk & Nutrisi</h3>
+            </div>
+            <p class="text-gray-600 mb-8">Nutrisi lengkap untuk pertumbuhan akar, daun, bunga, dan buah</p>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Produk 1 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/pupuk kompos premium.png" alt="Pupuk Kompos" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Pupuk Kompos Premium</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(245)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 30.000</p>
+                            <span class="text-sm text-gray-500">/kg</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 900.000</p>
+    <span class="text-sm text-gray-500">/karung 30 kg</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Produk 2 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/pupuk npk.png" alt="Pupuk NPK Organik" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Pupuk NPK Organik Plus</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(189)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 25.000</p>
+                            <span class="text-sm text-gray-500">/kg</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 750.000</p>
+    <span class="text-sm text-gray-500">/karung 30 kg</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Produk 3 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/zat pengatur tumbuhan.png" alt="Zat Pengatur Tumbuh" />
+                    </div>
+                    <div class="absolute left-3 top-3">
+                        <span class="px-3 py-1.5 text-xs font-bold tracking-wide text-white uppercase bg-purple-600 rounded-full">Baru</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Zat Pengatur Tumbuh Organik</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(98)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 95.000</p>
+                            <span class="text-sm text-gray-500">/250ml</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 190.000</p>
+    <span class="text-sm text-gray-500">/liter</span>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kategori 2: Pestisida & Fungisida -->
+        <div class="mt-16 pt-12 border-t border-gray-200">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3">
+                    <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.172 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">Pestisida & Fungisida</h3>
+            </div>
+            <p class="text-gray-600 mb-8">Lindungi tanaman dari hama dan penyakit secara alami</p>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Produk 4 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/pestisida organik premium.png" alt="Pestisida Organik" />
+                    </div>
+                    <div class="absolute left-3 top-3">
+                        <span class="px-3 py-1.5 text-xs font-bold tracking-wide text-white uppercase bg-green-600 rounded-full">Terbaru</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Pestisida Organik Premium</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(128)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 75.000</p>
+                            <span class="text-sm text-gray-500">/125ml</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 600.000</p>
+    <span class="text-sm text-gray-500">/liter</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Produk 5 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/fungisida alami anti jamur.png" alt="Fungisida Alami" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Fungisida Alami Anti Jamur</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(112)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 50.000</p>
+                            <span class="text-sm text-gray-500">/100gram</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 500.000</p>
+    <span class="text-sm text-gray-500">/kg</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Produk 6 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/Herbisida organik pengendali gulma.png" alt="Herbisida Organik" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Herbisida Organik Pengendali Gulma</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(76)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 125.000</p>
+                            <span class="text-sm text-gray-500">/liter</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 125.000</p>
+    <span class="text-sm text-gray-500">/liter</span>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kategori 3: Bibit Unggul -->
+        <div class="mt-16 pt-12 border-t border-gray-200">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">Bibit Unggul</h3>
+            </div>
+            <p class="text-gray-600 mb-8">Bibit bersertifikat dengan hasil panen tinggi dan tahan penyakit</p>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Produk 7 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/benih padi.png" alt="Bibit Padi Unggul" />
+                    </div>
+                    <div class="absolute left-3 top-3">
+                        <span class="px-3 py-1.5 text-xs font-bold tracking-wide text-white uppercase bg-red-600 rounded-full">Diskon</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Bibit Padi Unggul INPARI 32</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(87)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 90.000</p>
+                            <del class="text-sm text-gray-500">1kg/del>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 450.000</p>
+    <span class="text-sm text-gray-500">/5kg</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Produk 8 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/benih cabe.png" alt="Bibit Cabai Rawit" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Bibit Cabai Rawit Super Pedas</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(203)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 50.000</p>
+                            <span class="text-sm text-gray-500">/1 sachet</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 250.000</p>
+    <span class="text-sm text-gray-500">/1 kardus isi 5</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Produk 9 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/benih tomat.png" alt="Bibit Tomat Hibrida" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Bibit Tomat Hibrida Tahan Layu</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(156)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 75.000</p>
+                            <span class="text-sm text-gray-500">/1 sechet</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 375.000</p>
+    <span class="text-sm text-gray-500">/1 kardus isi 5</span>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kategori 4: Alat Pertanian -->
+        <div class="mt-16 pt-12 border-t border-gray-200">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">Alat Pertanian</h3>
+            </div>
+            <p class="text-gray-600 mb-8">Alat modern untuk efisiensi dan produktivitas tinggi</p>
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Produk 10 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/semprot.png" alt="Alat Semprot Otomatis" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Alat Semprot Otomatis 16L</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(156)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 600.000</p>
+                            <span class="text-sm text-gray-500">/unit</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700"></p>
+    <span class="text-sm text-gray-500"></span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Produk 11 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/alat ukur ph tanah.png" alt="Alat Ukur pH Tanah" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Alat Ukur pH Tanah Digital</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(92)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 100.000</p>
+                            <span class="text-sm text-gray-500">/unit</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700"></p>
+    <span class="text-sm text-gray-500">/</span>
+</div>
+
+                    </div>
+                </div>
+
+                <!-- Produk 12 -->
+                <div class="relative group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="overflow-hidden aspect-square">
+                        <img class="object-cover w-full h-full transition-all duration-500 group-hover:scale-110" src="img/sarung tangan tahan duri.png" alt="Sarung Tangan Pertanian" />
+                    </div>
+                    <div class="absolute left-3 top-3">
+                        <span class="px-3 py-1.5 text-xs font-bold tracking-wide text-white uppercase bg-green-600 rounded-full">Best Seller</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-base font-bold text-gray-900 hover:text-green-700 transition-colors">Sarung Tangan Pertanian Tahan Duri</h3>
+                        <div class="flex items-center mt-2.5 space-x-1">
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <span class="text-sm text-gray-600 ml-2">(312)</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+                            <p class="text-lg font-bold text-green-700">Rp 30.000</p>
+                            <span class="text-sm text-gray-500">/pasang</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-3">
+    <p class="text-lg font-bold text-green-700">Rp 300.000</p>
+    <span class="text-sm text-gray-500">/pack</span>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+    <!-- Cari Section -->
+    <section id="cari" class="py-12 bg-white sm:py-16 lg:py-20">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Cari Solusi untuk Tanaman Anda</h2>
+                <p class="mt-4 text-lg text-gray-600">Temukan rekomendasi berdasarkan tanaman, masalah, atau lokasi Anda</p>
+            </div>
+
+            <div class="mt-10 max-w-3xl mx-auto bg-green-50 rounded-2xl p-6 shadow-sm">
+                <form id="searchForm" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Tanaman</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
+                            <option value="">Pilih tanaman...</option>
+                            <option value="padi">Padi</option>
+                            <option value="jagung">Jagung</option>
+                            <option value="cabai">Cabai</option>
+                            <option value="tomat">Tomat</option>
+                            <option value="kopi">Kopi</option>
+                            <option value="kelapa-sawit">Kelapa Sawit</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Masalah yang Dihadapi</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
+                            <option value="">Pilih masalah...</option>
+                            <option value="hama">Serangan Hama</option>
+                            <option value="penyakit">Penyakit Tanaman</option>
+                            <option value="nutrisi">Kekurangan Nutrisi</option>
+                            <option value="gulma">Gulma (Rumput Liar)</option>
+                            <option value="kelembaban">Kelembaban Berlebih</option>
+                            <option value="kekeringan">Kekeringan</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Lokasi (Provinsi)</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none">
+                            <option value="">Pilih provinsi...</option>
+                            <option value="jawa-barat">Jawa Barat</option>
+                            <option value="jawa-tengah">Jawa Tengah</option>
+                            <option value="jawa-timur">Jawa Timur</option>
+                            <option value="sumatera-utara">Sumatera Utara</option>
+                            <option value="sulawesi-selatan">Sulawesi Selatan</option>
+                            <option value="kalimantan-timur">Kalimantan Timur</option>
+                            <option value="bali">Bali</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full bg-green-700 text-white font-semibold py-3 rounded-lg hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Cari Solusi
+                    </button>
+                </form>
+            </div>
+
+            <div id="searchResult" class="mt-10 hidden">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-green-100">
+                    <h3 class="text-xl font-bold text-green-800">Rekomendasi untuk Anda</h3>
+                    <p class="mt-3 text-gray-700">Berdasarkan masukan Anda, berikut solusi terbaik:</p>
+                    <ul class="mt-3 list-disc pl-5 text-gray-600 space-y-1">
+                        <li>Gunakan <strong>Pestisida Organik Premium</strong> untuk mengatasi serangan hama.</li>
+                        <li>Tambahkan <strong>Pupuk Kompos Berkualitas</strong> untuk memperbaiki kesuburan tanah.</li>
+                        <li>Lakukan penyemprotan pagi/sore hari dengan <strong>Alat Semprot Otomatis</strong> agar merata.</li>
+                    </ul>
+                    <button onclick="openModal('registerModal')" class="mt-4 inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                        Dapatkan Solusi Lengkap →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solusi Section -->
+    <section id="solusi" class="py-12 bg-gray-50 sm:py-16 lg:py-20">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Solusi Berdasarkan Masalah Pertanian</h2>
+                <p class="mt-4 text-lg text-gray-600">Kami punya jawaban untuk setiap tantangan di lahan Anda</p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Solusi 1 -->
+                <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition-shadow border border-gray-100">
+                    <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.172 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Serangan Hama</h3>
+                    <p class="mt-2 text-gray-600">Ulat, wereng, kutu daun, dan hama lainnya bisa dikendalikan dengan Pestisida Organik Premium kami yang aman untuk tanah dan manusia.</p>
+                    <a href="#produk" class="mt-3 inline-block text-green-700 font-medium hover:underline">Lihat Produk →</a>
+                </div>
+
+                <!-- Solusi 2 -->
+                <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition-shadow border border-gray-100">
+                    <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Kesuburan Tanah Rendah</h3>
+                    <p class="mt-2 text-gray-600">Tanah tandus? Gunakan Pupuk Kompos Berkualitas kami untuk meningkatkan mikroba tanah dan mempercepat pertumbuhan akar.</p>
+                    <a href="#produk" class="mt-3 inline-block text-green-700 font-medium hover:underline">Lihat Produk →</a>
+                </div>
+
+                <!-- Solusi 3 -->
+                <div class="bg-white p-6 rounded-xl shadow hover:shadow-md transition-shadow border border-gray-100">
+                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-1.5l-4 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Efisiensi Penyemprotan</h3>
+                    <p class="mt-2 text-gray-600">Kurangi tenaga dan waktu dengan Alat Semprot Otomatis kami—tekanan stabil, jangkauan luas, dan hemat cairan hingga 30%.</p>
+                    <a href="#produk" class="mt-3 inline-block text-green-700 font-medium hover:underline">Lihat Produk →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Harga Section -->
+    <section id="harga" class="py-12 bg-white sm:py-16 lg:py-20">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Daftar Harga & Solusi Pertanian</h2>
+                <p class="mt-4 text-lg text-gray-600">Transparan, terjangkau, dan disesuaikan dengan kebutuhan lapangan</p>
+            </div>
+
+            <div class="mt-12 overflow-x-auto">
+                <table class="min-w-full bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+                    <thead class="bg-green-700 text-white">
+                        <tr>
+                            <th class="py-4 px-6 text-left font-semibold">Produk / Solusi</th>
+                            <th class="py-4 px-6 text-center font-semibold">Untuk Masalah</th>
+                            <th class="py-4 px-6 text-right font-semibold">Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-4 px-6 font-medium text-gray-900">Pestisida Organik Premium</td>
+                            <td class="py-4 px-6 text-center text-gray-600">Hama (ulat, kutu daun, wereng)</td>
+                            <td class="py-4 px-6 text-right font-bold text-green-700">Rp 125.000 / liter</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-4 px-6 font-medium text-gray-900">Pupuk Kompos Berkualitas</td>
+                            <td class="py-4 px-6 text-center text-gray-600">Tanah tandus, pertumbuhan lambat</td>
+                            <td class="py-4 px-6 text-right font-bold text-green-700">Rp 85.000 / kg</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 font-medium text-gray-900">Bibit Unggul Bersertifikat</td>
+                            <td class="py-4 px-6 text-center text-gray-600">Varietas rendah hasil</td>
+                            <td class="py-4 px-6 text-right font-bold text-green-700">Rp 45.000 / paket</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-4 px-6 font-medium text-gray-900">Alat Semprot Otomatis</td>
+                            <td class="py-4 px-6 text-center text-gray-600">Efisiensi penyemprotan</td>
+                            <td class="py-4 px-6 text-right font-bold text-green-700">Rp 350.000 / unit</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 font-medium text-gray-900">Paket Lengkap Pertanian</td>
+                            <td class="py-4 px-6 text-center text-gray-600">Solusi all-in-one (bibit + pupuk + pestisida)</td>
+                            <td class="py-4 px-6 text-right font-bold text-green-700">Rp 250.000 / paket</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-10 text-center">
+                <p class="text-gray-600 mb-4">Butuh konsultasi gratis?</p>
+                <a href="#" onclick="openModal('registerModal'); return false;" class="inline-flex items-center px-6 py-3 bg-green-700 text-white font-semibold rounded-full shadow-md hover:bg-green-800 transition-all">
+                    Hubungi Ahli Pertanian Kami
+                   
+    
+</a>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Pertanyaan Yang Sering Diajukan</h2>
+                <p class="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600">Temukan jawaban untuk pertanyaan umum seputar layanan kami</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto mt-8 space-y-4 md:mt-16">
+                <!-- FAQ Item 1 -->
+                <div class="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50" onclick="toggleFAQ(this)">
+                    <div class="flex items-center justify-between w-full px-4 py-5 sm:p-6">
+                        <span class="text-lg font-medium text-gray-900">Apa saja keunggulan produk Obat Tani?</span>
+                        <svg class="w-5 h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="px-4 pb-5 sm:px-6 sm:pb-6 hidden">
+                        <p class="text-gray-600">Produk kami 100% organik, ramah lingkungan, telah diuji di laboratorium, dan memberikan hasil panen hingga 30% lebih tinggi dibandingkan penggunaan konvensional.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50" onclick="toggleFAQ(this)">
+                    <div class="flex items-center justify-between w-full px-4 py-5 sm:p-6">
+                        <span class="text-lg font-medium text-gray-900">Bagaimana cara pemesanan?</span>
+                        <svg class="w-5 h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="px-4 pb-5 sm:px-6 sm:pb-6 hidden">
+                        <p class="text-gray-600">Anda bisa memesan langsung melalui website ini setelah login, atau menghubungi tim kami via WhatsApp di nomor yang tersedia di halaman kontak.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="transition-all duration-200 bg-white border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50" onclick="toggleFAQ(this)">
+                    <div class="flex items-center justify-between w-full px-4 py-5 sm:p-6">
+                        <span class="text-lg font-medium text-gray-900">Apakah ada garansi produk?</span>
+                        <svg class="w-5 h-5 text-gray-500 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="px-4 pb-5 sm:px-6 sm:pb-6 hidden">
+                        <p class="text-gray-600">Ya, kami memberikan garansi kepuasan 100%. Jika produk tidak sesuai ekspektasi, Anda bisa mengajukan pengembalian dalam 7 hari.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Register -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Daftar Akun Baru</h2>
+                <button onclick="closeModal('registerModal')" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <form onsubmit="handleRegister(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="Nama Anda">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="nama@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nomor HP</label>
+                    <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="0812...">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Lokasi (Desa/Kecamatan)</label>
+                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="Misal: Desa Sukamaju">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="Minimal 6 karakter">
+                </div>
+                <button type="submit" class="w-full bg-green-700 text-white font-semibold py-3 rounded-lg hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Daftar Sekarang
+                </button>
+            </form>
+            <p class="text-center text-gray-600 mt-4">Sudah punya akun? <a href="#" onclick="closeModal('registerModal'); openModal('loginModal'); return false;" class="text-green-700 font-semibold hover:underline">Masuk</a></p>
+        </div>
+    </div>
+
+    <!-- Modal Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Masuk ke Akun</h2>
+                <button onclick="closeModal('loginModal')" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="nama@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all" placeholder="Masukkan password">
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2">
+                        <span class="text-sm text-gray-600">Ingat saya</span>
+                    </label>
+                    <a href="#" class="text-sm text-green-700 hover:underline">Lupa password?</a>
+                </div>
+                <button type="submit" class="w-full bg-green-700 text-white font-semibold py-3 rounded-lg hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Masuk
+                </button>
+            </form>
+            <p class="text-center text-gray-600 mt-4">Belum punya akun? <a href="#" onclick="closeModal('loginModal'); openModal('registerModal'); return false;" class="text-green-700 font-semibold hover:underline">Daftar</a></p>
+        </div>
+    </div>
+
+    <script>
+        // === MODAL FUNCTIONS ===
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeModal(event.target.id);
+            }
+        }
+
+        // === FAQ TOGGLE ===
+        function toggleFAQ(element) {
+            const content = element.querySelector('div:not(.flex)');
+            const icon = element.querySelector('svg');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // === AUTH SYSTEM (SIMULATED) ===
+        const STORAGE_KEY = 'obattani_users';
+        const CURRENT_USER_KEY = 'obattani_current_user';
+
+        async function getStorage(key, isPrivate = false) {
+            const data = localStorage.getItem(key);
+            return data ? { value: data } : null;
+        }
+
+        async function setStorage(key, value, isPrivate = false) {
+            localStorage.setItem(key, value);
+        }
+
+        async function deleteStorage(key, isPrivate = false) {
+            localStorage.removeItem(key);
+        }
+
+        window.storage = { get: getStorage, set: setStorage, delete: deleteStorage };
+
+        // Handle Registration
+        async function handleRegister(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const phone = form.querySelector('input[type="tel"]').value;
+            const location = form.querySelectorAll('input[type="text"]')[1].value;
+            const password = form.querySelector('input[type="password"]').value;
+
+            let users = [];
+            const data = localStorage.getItem(STORAGE_KEY);
+            if (data) users = JSON.parse(data);
+
+            if (users.some(u => u.email === email)) {
+                alert('Email sudah terdaftar!');
+                return;
+            }
+
+            users.push({
+                id: Date.now().toString(),
+                name, email, phone, location, password,
+                createdAt: new Date().toISOString()
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+            alert('Pendaftaran berhasil!');
+            closeModal('registerModal');
+            form.reset();
+            setTimeout(() => openModal('loginModal'), 500);
+        }
+
+        // Handle Login
+        async function handleLogin(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            const password = event.target.querySelector('input[type="password"]').value;
+
+            const data = localStorage.getItem(STORAGE_KEY);
+            const users = data ? JSON.parse(data) : [];
+
+            const user = users.find(u => u.email === email && u.password === password);
+            if (user) {
+                localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+                alert(`Selamat datang, ${user.name}!`);
+                closeModal('loginModal');
+                location.reload();
+            } else {
+                alert('Email atau password salah!');
+            }
+        }
+
+        // Check login on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUser = localStorage.getItem(CURRENT_USER_KEY);
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                const loginButtons = document.querySelectorAll('a[onclick*="registerModal"]');
+                loginButtons.forEach(btn => {
+                    btn.textContent = user.name;
+                    btn.onclick = (e) => {
+                        e.preventDefault();
+                        if (confirm('Logout?')) {
+                            localStorage.removeItem(CURRENT_USER_KEY);
+                            location.reload();
+                        }
+                    };
+                });
+            }
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('menuBtn')?.addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOpen = document.getElementById('menuOpen');
+            const menuClose = document.getElementById('menuClose');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuOpen.classList.add('hidden');
+                menuClose.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuOpen.classList.remove('hidden');
+                menuClose.classList.add('hidden');
+            }
+        });
+
+        // Cari Form Handler
+        document.getElementById('searchForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('searchResult').classList.remove('hidden');
+            window.scrollTo({ top: document.getElementById('searchResult').offsetTop - 100, behavior: 'smooth' });
+        });
+        
+        
+    </script>
+    
+
+
+<!-- Footer -->
+<footer class="bg-green-800 text-white py-8">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl text-center">
+        <p class="text-lg font-semibold">Butuh Bantuan? Kami Siap Membantu!</p>
+        <p class="mt-2 text-green-100">
+            Hubungi kami via WhatsApp:
+            <a href="https://wa.me/6285855607326" target="_blank" class="font-bold underline hover:text-white">
+                +62 85855607326
+            </a>
+        </p>
+        <p class="mt-4 text-sm text-green-200">© 2025 ObatTaniku.id – Solusi Cerdas untuk Petani Indonesia</p>
+    </div>
+    
+</footer>
+
+
+
+
+</body>
+<script>
+// Fungsi Keranjang
+function getCart() {
+    const cart = localStorage.getItem('obattani_cart');
+    return cart ? JSON.parse(cart) : [];
+}
+function saveCart(cart) {
+    localStorage.setItem('obattani_cart', JSON.stringify(cart));
+    updateCartIcon(); // update badge jumlah
+}
+function addToCart(productName, price, unit) {
+    const cart = getCart();
+    const existing = cart.find(item => item.name === productName);
+    
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({
+            id: Date.now(),
+            name: productName,
+            price: price,
+            unit: unit,
+            quantity: 1
+        });
+    }
+    
+    saveCart(cart);
+    alert(`${productName} ditambahkan ke keranjang!`);
+}
+function updateCartIcon() {
+    const cart = getCart();
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const badge = document.getElementById('cartBadge');
+    if (badge) {
+        badge.textContent = totalItems;
+        badge.classList.toggle('hidden', totalItems === 0);
+    }
+}
+// Jalankan saat halaman dimuat
+document.addEventListener('DOMContentLoaded', updateCartIcon);
+</script>
+</html> 

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Mudah2 {{
+public class Mudah2 {{{
     Scanner masukkan = new Scanner(System.in);
         int bilangan1;
         System.out.print("Masukkan bilangan : ");
@@ -12,4 +12,5 @@ public class Mudah2 {{
             System.out.println("Bilangan ganjil");
         }
     }   
+}
 }
